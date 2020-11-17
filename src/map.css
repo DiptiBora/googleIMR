@@ -1,0 +1,23 @@
+.vehicleLocation{
+    
+}
+
+.ok{
+    display: flex;
+    flex-direction: row;
+}
+
+.currLoc{
+    display: flex;
+    flex-direction:row;
+}
+
+.vehicleList{
+    display: flex;
+    flex-direction:row;
+}
+
+.vehicleList1{
+    display: flex;
+    left: 0;
+}
