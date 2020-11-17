@@ -152,16 +152,16 @@ class App extends Component {
                 </GoogleMap>
                 <div className="vehicleLocation">                
                     <div className="ok"><b style={{marginTop:"5px"}}>1) All vehicle location :- </b><button style={{marginLeft:"20px",marginTop:"5px",height:"30px",width:"170px"}}onClick={this.allLocationHandler}>SUBMIT</button>
-                    <b style={{marginTop:"5px",marginLeft:"100px"}} >4) Current Location :- </b><input style={{marginLeft:"12px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.currentLocationHandlerChange} placeholder="Enter vehicle number" />
-                    <button style={{height:"25px",marginTop:"5px",marginLeft:"20px",width:"70px"}} onClick={this.currentLocationHandler}>Submit</button>   
+                    <b style={{marginTop:"5px",marginLeft:"100px"}} >4) Current Location :- </b><input style={{marginLeft:"62px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.currentLocationHandlerChange} placeholder="Enter vehicle number" />
+                    <button style={{height:"25px",marginTop:"5px",marginLeft:"15px",width:"170px"}} onClick={this.currentLocationHandler}>SUBMIT</button>   
                 </div>
 
                 <div className="currLoc">
                     <b style={{marginTop:"5px"}}>2) Post Vehicle Data :- </b><button style={{marginLeft:"32px",marginTop:"5px",height:"30px",width:"170px"}} onClick={this.postData}>SUBMIT</button>
                     
-                    <b style={{marginTop:"5px",marginLeft:"100px"}}>5) Get location :- </b><input style={{marginLeft:"45px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange} placeholder="Enter vehicle number" />
-                    <input style={{marginLeft:"12px",marginTop:"5px",height:"20px"}}type="text" name="number" value={this.state.number} onChange={this.handleChangeNumber} placeholder="Enter count of location" />
-                    <button style={{height:"25px",marginTop:"5px",marginLeft:"20px",width:"70px"}} onClick={this.clickHandler}>Submit</button><br></br>
+                    <b style={{marginTop:"5px",marginLeft:"100px"}}>5) Get Count of Location :- </b><input style={{marginLeft:"25px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange} placeholder="Enter vehicle number" />
+                    <input style={{marginLeft:"12px",marginTop:"5px",height:"20px",width:"60px"}} type="number" name="number" value={this.state.number} onChange={this.handleChangeNumber} placeholder="count" />
+                    <button style={{height:"25px",marginTop:"5px",marginLeft:"15px",width:"90px"}} onClick={this.clickHandler}>SUBMIT</button><br></br>
                 </div>
 
                <div className="vehicleList">
