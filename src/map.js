@@ -74,7 +74,7 @@ class App extends Component {
     }
 
     allLocationHandler = () => {
-        axios.get(`http://localhost:8080/vehicles`)
+        axios.get(`https://map-imr-api.herokuapp.com/vehicles`)
             .then((data) => {
                 var v1 = data.data._embedded.vehicleList;
                 this.setState({ arr: v1 });
