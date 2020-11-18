@@ -85,7 +85,7 @@ class App extends Component {
         const n = 0;
         const no = this.state.number;
         const vehiclenumber = this.state.vehicleNumber;
-        axios.get(`http://localhost:8080/vehiclesCount/${vehiclenumber}?number=${no}`)
+        axios.get(`https://map-imr-api.herokuapp.com/vehiclesCount/${vehiclenumber}?number=${no}`)
             .then((data) => {
                 var v1 = data.data;
                 console.log(v1);
@@ -94,7 +94,7 @@ class App extends Component {
     }
 
     listHandler = () => {
-        axios.get(`http://localhost:8080/vehiclesList`)
+        axios.get(`https://map-imr-api.herokuapp.com/vehiclesList`)
             .then((data) => {
                 const d = data.data;
                 this.setState({ vehicleList: d });
@@ -104,7 +104,7 @@ class App extends Component {
 
     currentLocationHandler = () => {
         const vehiclenumber = this.state.vehicleNumber;
-        axios.get(`http://localhost:8080/currentLocation/${vehiclenumber}`)
+        axios.get(`https://map-imr-api.herokuapp.com/currentLocation/${vehiclenumber}`)
             .then((data) => {
                 const curr = data.data;
                 const lat = curr.latitude;
