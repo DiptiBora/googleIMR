@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleMap, { Polyline } from 'google-map-react';
 import axios from "axios";
 import './map.css';
+import logo from './Logo/markerImage.png'
 
 const mapStyles = {
     position: 'absolute',
@@ -25,10 +26,11 @@ const imgStyle = {
     height: '50%'
 }
 
-const Marker = ({ title }) => (
+const Marker = ({ title,title1}) => (
     <div style={markerStyle}>
         <img style={imgStyle} src="https://res.cloudinary.com/og-tech/image/upload/s--OpSJXuvZ--/v1545236805/map-marker_hfipes.png" alt={title} />
-        <h3>{title}</h3>
+        <h4>{title}<br/>{title1}</h4>
+        
     </div>
 );
 
@@ -46,7 +48,8 @@ class App extends Component {
             curr: [],
             currLat: '',
             currLng: '',
-            timeStamp: ''
+            timeStamp: '',
+            vNumber: ''
         }
         this.clickHandler = this.clickHandler.bind(this);
         this.allLocationHandler = this.allLocationHandler.bind(this);
@@ -88,7 +91,6 @@ class App extends Component {
         axios.get(`https://map-imr-api.herokuapp.com/vehiclesCount/${vehiclenumber}?number=${no}`)
             .then((data) => {
                 var v1 = data.data;
-                console.log(v1);
                 this.setState({ arr: v1 });
             });
     }
@@ -109,8 +111,9 @@ class App extends Component {
                 const curr = data.data;
                 const lat = curr.latitude;
                 const lng = curr.longitude;
-                const timestamp = curr.timastamp.substr(11, 8);
-                this.setState({ currLat: lat, currLng: lng, timeStamp: timestamp })
+                const timestamp = curr.timastamp;
+                const vNumber = curr.vehicleNumber;
+                this.setState({ currLat: lat, currLng: lng, timeStamp: timestamp ,vNumber:vNumber})
             })
     }
 
@@ -125,17 +128,17 @@ class App extends Component {
                 <GoogleMap
                     style={mapStyles}
                     bootstrapURLKeys={{ key: "AIzaSyBqOgf4wWH5ZPGPF9IKPu3LC-yDyWMs1DM" }}
-                    center={{ lat: -20.70, lng: -30.03 }}
+                    center={{ lat: 20.70, lng: -30.03 }}
                     zoom={1}
                 >
                     {
                         this.state.arr.map(
-                            ({ latitude, longitude, timastamp }) => (
+                            ({ latitude, longitude, timastamp, vehicleNumber}) => (
                                 <Marker
                                     title={timastamp}
+                                    title1={vehicleNumber}
                                     lat={latitude}
                                     lng={longitude}
-                                    zoom={5}
                                 >
                                 </Marker>
                             )
@@ -143,29 +146,31 @@ class App extends Component {
                     }
 
                     <Marker
-                        title={this.state.timeStamp}
+                        title1={this.state.timeStamp}
+                        title={this.state.vNumber}
                         lat={this.state.currLat}
                         lng={this.state.currLng}
                     >
                     </Marker>
+                
 
                 </GoogleMap>
                 <div className="vehicleLocation">                
-                    <div className="ok"><b style={{marginTop:"5px"}}>1) All vehicle location :- </b><button style={{marginLeft:"20px",marginTop:"5px",height:"30px",width:"170px"}}onClick={this.allLocationHandler}>SUBMIT</button>
-                    <b style={{marginTop:"5px",marginLeft:"100px"}} >4) Current Location :- </b><input style={{marginLeft:"62px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.currentLocationHandlerChange} placeholder="Enter vehicle number" />
+                    <div className="ok"><b style={{marginTop:"5px"}}>1) All vehicle location : </b><button style={{marginLeft:"20px",marginTop:"5px",height:"30px",width:"170px"}}onClick={this.allLocationHandler}>SUBMIT</button>
+                    <b style={{marginTop:"5px",marginLeft:"100px"}} >4) Current Location : </b><input style={{marginLeft:"62px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.currentLocationHandlerChange} placeholder="Enter vehicle number" />
                     <button style={{height:"25px",marginTop:"5px",marginLeft:"15px",width:"170px"}} onClick={this.currentLocationHandler}>SUBMIT</button>   
                 </div>
 
                 <div className="currLoc">
-                    <b style={{marginTop:"5px"}}>2) Post Vehicle Data :- </b><button style={{marginLeft:"32px",marginTop:"5px",height:"30px",width:"170px"}} onClick={this.postData}>SUBMIT</button>
+                    <b style={{marginTop:"5px"}}>2) Post Vehicle Data : </b><button style={{marginLeft:"32px",marginTop:"5px",height:"30px",width:"170px"}} onClick={this.postData}>SUBMIT</button>
                     
-                    <b style={{marginTop:"5px",marginLeft:"100px"}}>5) Get Count of Location :- </b><input style={{marginLeft:"25px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange} placeholder="Enter vehicle number" />
+                    <b style={{marginTop:"5px",marginLeft:"100px"}}>5) Get Count of Location : </b><input style={{marginLeft:"25px",marginTop:"5px",height:"20px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={this.handleChange} placeholder="Enter vehicle number" />
                     <input style={{marginLeft:"12px",marginTop:"5px",height:"20px",width:"60px"}} type="number" name="number" value={this.state.number} onChange={this.handleChangeNumber} placeholder="count" />
                     <button style={{height:"25px",marginTop:"5px",marginLeft:"15px",width:"90px"}} onClick={this.clickHandler}>SUBMIT</button><br></br>
                 </div>
 
                <div className="vehicleList">
-                <b style={{marginTop:"10px"}}>3) Get Vehicle List :- </b><button style={{marginLeft:"47px",marginTop:"8px",height:"30px",width:"170px"}} onClick={this.listHandler}>SUBMIT</button>
+                <b style={{marginTop:"10px"}}>3) Get Vehicle List : </b><button style={{marginLeft:"47px",marginTop:"8px",height:"30px",width:"170px"}} onClick={this.listHandler}>SUBMIT</button>
                </div>
                <div className="vehicleList1">
                {
