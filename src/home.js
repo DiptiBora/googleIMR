@@ -26,7 +26,7 @@ class Home extends Component{
 
     postDataHandler = () => {
         const mapData= {latitude:this.state.latitude,longitude:this.state.longitude,vehicleNumber:this.state.vehicleNumber,timastamp:this.state.timastamp}
-        axios.post(`http://map-imr-api.herokuapp.com/vehicles`,mapData)
+        axios.post(`https://map-imr-api.herokuapp.com/vehicles`,mapData)
         .then((data) => {
       console.log(data);
       this.setState({arr: data});
