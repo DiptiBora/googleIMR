@@ -48,6 +48,7 @@ class Home extends Component{
                 <input style={{margin:"10px",height:"10px",padding:"10px",marginLeft:"20px",width:"300px"}} type="text" name="vehicleNumber" value={this.state.vehicleNumber} onChange={ this.handleChange } placeholder="Enter VehicleNumber" /><br/>
                 <button  style={{margin:"10px",height:"40px",padding:"10px",marginLeft:"20px",width:"100px"}} onClick={this.postDataHandler}>SUBMIT</button>
                 <button   style={{height:"40px"}} onClick={this.previousDataHandler}>PREVIOUS</button>
+                <button style={{height:"40px",padding:"5px",marginLeft:"15px"}} onClick={() => window.location.reload(false)}>RESET</button>
             </div>
         );
     }
